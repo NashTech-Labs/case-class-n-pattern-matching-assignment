@@ -48,7 +48,7 @@ Course :
 					//hons, electrical engg etc)
 
 ```
-**Objective 1:**<br/>
+**Objective :**<br/>
 <br/>
 a)  Create the `trait`'s for defining the functionalities/characterisitics for<br/>
 the entitites decared above.<br/>
@@ -78,23 +78,8 @@ etc according to the need and find write the methods to find -<br/>
 7.) list of students who attained greater than a particular aggregate percentage , e.g. **90**, **75** etc<br/>
 8.) list of students who attained lesser than a particular aggregate percentage , e.g. **70**, **60** etc<br/>
 
-**Instructions:** Don't use `if-else`. Use the `match-case` instead wherever possible.
-
-**Objective 2:**
-
 It's not necessary that all the courses have fixed number of subjects. There can be more or less
-than 6 subjects in a course including the optional subjects. So now add one more
-attribute in the course case class - `noOfSubjects` and increase the total number of
-subjects to 10. These 10 subjects will also include the optional subjects. Represent the
-optional subjects as of type `Option[Subject]` and while giving marks to a particular
-student use `Option` type., **_Hint_** If an optional subject is chosen by the student assign his marks in the
-`Some[Subject]` and if not just add the `None` for that subject.
-
-Also the mandatory subjects can't be fixed for all courses. So work around how you can
-handle the varying number of subjects in various number of courses within this case
-scenario. **_Yet another hint:_** Use of Option type can come handy here.
-
-Refactor your project (which was based on Objective 1) so that it can deal with `Option` types.
+than 6 subjects in a course.
 
 **Instructions:** 1. Use the `map` over `Option` type in order to read the values inside them rather then `.get()` method<br/>
 2.) Use flatMap wherever needed to eliminate the complexity of the collections.<br/>
@@ -106,10 +91,12 @@ Refactor your project (which was based on Objective 1) so that it can deal with 
 8.) Use constant pattern (**`case {some_constant} =>`**)<br/>
 9.) Use variable pattern (**`case {someVariable} =>`**)<br/>
 10.) Use constructor pattern (**`case {SomeClass(param1, param2, param3 .... paramN)} =>`**)<br/>
-
+11.) Don't use `if-else`. Use the `match-case` instead wherever possible.
 
 >>[1] A student is considered failed if he fails even in one subject.<br/>
+
 >>[2] To see how things are working have a look at test cases.<br/>
+
 >>[3] Grades criteria :<br/>
     A+  >= 95%<br/>
     A   >= 90%<br/>
@@ -121,3 +108,5 @@ Refactor your project (which was based on Objective 1) so that it can deal with 
     D   >= 40%<br/>
     F   <  40%<br/>
     
+>>[4] Follow the project structure strictly. Write logic for the created public methods. 
+You can create your own private methods.
