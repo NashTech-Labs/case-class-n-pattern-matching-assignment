@@ -106,3 +106,18 @@ Refactor your project (which was based on Objective 1) so that it can deal with 
 8.) Use constant pattern (**`case {some_constant} =>`**)<br/>
 9.) Use variable pattern (**`case {someVariable} =>`**)<br/>
 10.) Use constructor pattern (**`case {SomeClass(param1, param2, param3 .... paramN)} =>`**)<br/>
+
+
+>>[1] A student is considered failed if he fails even in one subject.<br/>
+>>[2] To see how things are working have a look at test cases.<br/>
+>>[3] Grades criteria :<br/>
+    A+  >= 95%<br/>
+    A   >= 90%<br/>
+    B+  >= 85%<br/>
+    B   >= 80%<br/>
+    C+  >= 70%<br/>
+    C   >= 60%<br/>
+    D+  >= 50%<br/>
+    D   >= 40%<br/>
+    F   <  40%<br/>
+    
