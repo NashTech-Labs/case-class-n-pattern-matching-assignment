@@ -58,27 +58,33 @@ student and subject object and returns a new Scoreboard object by filling the fi
 <b><i>Assignment 3:</i></b> The scoreboard case class must have two functions which would have the below functionality
 1) Get the Subject which has the highest score.
 2) Get the Subject which has the lowest score.
+<br/>
 
 <b><i>Assignment 4:</i></b> Student must have the below functions
  1) Get address should return either the address or N/A if not preset. Do not use, if-else, match case, getOrElse,
  and use fold with identity instead
  2) As you know middle name might contain more than one name, getMiddleName in Student class will return
  only the first middle name if it exist at all. Ideally you should use map function of Option for that.
+<br/>
 
  For doing some database operation we have a object called RamDatabase which holds the
 Course Performance case class in a list buffer. It has three functions add, update and get.
+<br/>
 
 <b><i>Assignment 4:</i></b> In the class Postman we have a method called getTheFirstAddressOfFirstYearPerformance
  whenever this function would be called with an id, first it will find the CoursePerformance from the RandomDatabase
  using the find function, then it gets the first scoreBoard by using the headOption function and then it must give us
  back the Address if exist. Ideally you should use map and flatMap for this.
+<br/>
 
 <b><i>Assignment 5:</i></b> Principal wants to know whats the result of CSE and he has a wild guess about the Course Performance
 id. Find the performance from RamDatabase and using constant pattern matching findout if it really is CSE. If not
 throw an exception.
+<br/>
 
 <b><i>Assignment 6:</i></b> Principal wants to know by guessing the id and the course name if it exist. And you should
 help him by using Variable Pattern for this as well as handle the case if no course matched with a wildcard pattern.
+<br/>
 
 <b><i>Assignment 7:</i></b> Principal gives different expressions when he gets to discuss about different topics. His
 expression like below.
@@ -86,8 +92,10 @@ expression like below.
 2. When its about Scoreboard he says "Hmmm .... <percentage>". Use constructor pattern, and return the expression as String
 3. When its about Subject he says "aha <subject name>". Use constructor pattern, and return the expression as String
 4. When its about anything else he says "!!! ???". Use constructor pattern, and return the expression as String
+<br/>
 
 <b><i>Assignment 8:</i></b> Principal checks scoreboard. It must return something like List["Nitin Java 90",
 "Kunal Scala 99"], use pattern matching in "for expression".
+<br/>
 
 <b><i>Assignment 9:</i></b> Re do the principal expressions with partial function.
