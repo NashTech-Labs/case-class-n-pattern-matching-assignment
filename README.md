@@ -71,22 +71,22 @@ student and subject object and returns a new Scoreboard object by filling the fi
 Course Performance case class in a list buffer. It has three functions add, update and get.
 <br/>
 
-<b><i>Assignment 4:</i></b> In the class Postman we have a method called getTheFirstAddressOfFirstYearPerformance
+<b><i>Assignment 5:</i></b> In the class Postman we have a method called getTheFirstAddressOfFirstYearPerformance
  whenever this function would be called with an id, first it will find the CoursePerformance from the RandomDatabase
  using the find function, then it gets the first scoreBoard by using the headOption function and then it must give us
  back the Address if exist. Ideally you should use map and flatMap for this.
 <br/>
 
-<b><i>Assignment 5:</i></b> Principal wants to know whats the result of CSE and he has a wild guess about the Course Performance
+<b><i>Assignment 6:</i></b> Principal wants to know whats the result of CSE and he has a wild guess about the Course Performance
 id. Find the performance from RamDatabase and using constant pattern matching findout if it really is CSE. If not
 throw an exception.
 <br/>
 
-<b><i>Assignment 6:</i></b> Principal wants to know by guessing the id and the course name if it exist. And you should
+<b><i>Assignment 7:</i></b> Principal wants to know by guessing the id and the course name if it exist. And you should
 help him by using Variable Pattern for this as well as handle the case if no course matched with a wildcard pattern.
 <br/>
 
-<b><i>Assignment 7:</i></b> Principal gives different expressions when he gets to discuss about different topics. His
+<b><i>Assignment 8:</i></b> Principal gives different expressions when he gets to discuss about different topics. His
 expression like below.
 1. When its about Student he says "Shut up <firstName>". Use constructor pattern, and return the expression as String
 2. When its about Scoreboard he says "Hmmm .... <percentage>". Use constructor pattern, and return the expression as String
@@ -94,8 +94,8 @@ expression like below.
 4. When its about anything else he says "!!! ???". Use constructor pattern, and return the expression as String
 <br/>
 
-<b><i>Assignment 8:</i></b> Principal checks scoreboard. It must return something like List["Nitin Java 90",
+<b><i>Assignment 9:</i></b> Principal checks scoreboard. It must return something like List["Nitin Java 90",
 "Kunal Scala 99"], use pattern matching in "for expression".
 <br/>
 
-<b><i>Assignment 9:</i></b> Re do the principal expressions with partial function.
+<b><i>Assignment 10:</i></b> Re do the principal expressions with partial function.
