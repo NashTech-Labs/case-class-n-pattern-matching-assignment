@@ -5,34 +5,31 @@ rather than old pen and paper style of giving marks to students.<br/>
 Now the main goal for you as software developers is to build a module, using
 scala language, that represents the marks of the students in a rigid
 systematic way and also design the functionalities to calculate marks, finding
-best students etc (requirements declared below)<br/>
-<br/>
-Use **case** classes to represent the attributes of subjects, student, scorecard
-and course. The minimum expected attributes of these entities are-<br/>
+best students etc <br/>
+Like every other software we need to create our models first. The only field that must be in each model is id.
+
+<b><i>Assignment 1:</i></b> We have created a trait called com.knoldus.kip.models.ModelIdentifier which has a
+id called id. Below details must be captured in case classes by extending the ModelIdentifier trait.
 <br/>
 ```
 Subject :
 	name 				//Subject name
-	id				//Subject ID
 	maxMarks			//maxMarks for a subject
 	obtainedMarks		    	//Marks obtained by the student
 	
 Student :
-	name 				//Student Name
-	rollNumber			//Class roll number for attendance
-	age				//Student Age
-	gender				//Gender of student
-	enrollemntNumber	    	//enrollemntNumber alloted during the admission
+	firstName 				//Student First Name
+	middleName 				//Optional student middle Name
+	lastName 				//Last Name
+	rollNumber				//Class roll number for attendance
+	age						//Optional student Age
+	gender					//Gender of student
+	enrollemntNumber	    //enrollemntNumber alloted during the admission
+	address					//Optional address
 
 Scorecard :
-	nameOfStudent		    	//Name of student
-	rollNumber			//Roll Number (you can add enrol. no. too)
-	subject1			//Subject from chosen course
-	subject2			//Subject from chosen course
-	subject3			//Subject from chosen course
-	subject4			//Subject from chosen course
-	subject5			//Subject from chosen course
-	subject6			//Subject from chosen course
+	student            // Student case class
+	subjects             // Subject case classes
 	total				//Total of marks
 	percentage			//Percentage of student
 	grade				//Grades of the student based on grades
@@ -43,70 +40,54 @@ Scorecard :
 
 Course :
 	name 				//Name of the course
-	id 				//ID of the course
 	category			//category of the Course (like zoology, physics
 					//hons, electrical engg etc)
+	subjects        // Subject case classes
+
+Course performance:
+	year				// Year which has the performances
+	course				// Course e.g. ECE, CSE etc.
+	scoreCards			// Performance detail of the students
 
 ```
-**Objective :**<br/>
+
+<b><i>Assignment 2:</i></b> Create a companion object of Scorecard. Override the apply method which would take the
+student and subject object and returns a new Scoreboard object by filling the fields total, percentage grade.
 <br/>
-a)  Create the `trait`'s for defining the functionalities/characterisitics for<br/>
-the entitites decared above.<br/>
-<br/>
-b) Create the **case** classes for all of the entities mentioned above. These case<br/>
-classes should extend their respective trait classes. Example, Course can<br/>
-be a trait having its methods declared inside it and then define the case<br/>
-class for actual course entity that extends that trait and implement the method for<br/>
-that particular course.<br/>
-<br/>
-c) Imlement the methods, defined in the trait, in the case classes.<br/>
-<br/>
-d) Define the `apply()` methods of the case classes to construct the factory
-objects of those classes. For example, define the apply() method of the
-Scorecard case class that takes the marks of the subjects (along with student
-details) and calculates the total, grades and percentage inside the apply
-method and save the values of the those attributes accordingly.
-<br/><br/>
-e) Create a business logic to store the Scorecard's of all the students in scala collection object e.g. List, Map, Set
-etc according to the need and find write the methods to find -<br/> 
-1.) the best three students of the class.<br/>
-2.) list of failed students<br/>
-3.) no of students who passed<br/>
-4.) no of students who failed<br/>
-5.) list of students who attained a particular aggregate grade , e.g. **A-**, **C+** etc<br/>
-6.) no of students who attained greater/lesser than a particular aggregate percentage , e.g. **90**, **75** etc<br/>
-7.) list of students who attained greater than a particular aggregate percentage , e.g. **90**, **75** etc<br/>
-8.) list of students who attained lesser than a particular aggregate percentage , e.g. **70**, **60** etc<br/>
 
-It's not necessary that all the courses have fixed number of subjects. There can be more or less
-than 6 subjects in a course.
+<b><i>Assignment 3:</i></b> The scoreboard case class must have two functions which would have the below functionality
+1) Get the Subject which has the highest score.
+2) Get the Subject which has the lowest score.
 
-**Instructions:** 1. Use the `map` over `Option` type in order to read the values inside them rather then `.get()` method<br/>
-2.) Use flatMap wherever needed to eliminate the complexity of the collections.<br/>
-3.) Use Pattern-Matching with Option type<br/>
-4.) Use the fold and identity with Option type<br/>
-5.) Create a Partial Function (inside the business logic) to deal with different courses<br/>
-6.) Demonstrate the use of **`for`** expression with pattern Matching. Get help <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=281160">from here</a><br/>
-7.) Use wildcard pattern (**`case _ =>`**)<br/>
-8.) Use constant pattern (**`case {some_constant} =>`**)<br/>
-9.) Use variable pattern (**`case {someVariable} =>`**)<br/>
-10.) Use constructor pattern (**`case {SomeClass(param1, param2, param3 .... paramN)} =>`**)<br/>
-11.) Don't use `if-else`. Use the `match-case` instead wherever possible.
+<b><i>Assignment 4:</i></b> Student must have the below functions
+ 1) Get address should return either the address or N/A if not preset. Do not use, if-else, match case, getOrElse,
+ and use fold with identity instead
+ 2) As you know middle name might contain more than one name, getMiddleName in Student class will return
+ only the first middle name if it exist at all. Ideally you should use map function of Option for that.
 
->>[1] A student is considered failed if he fails even in one subject.<br/>
+ For doing some database operation we have a object called RamDatabase which holds the
+Course Performance case class in a list buffer. It has three functions add, update and get.
 
->>[2] To see how things are working have a look at test cases.<br/>
+<b><i>Assignment 4:</i></b> In the class Postman we have a method called getTheFirstAddressOfFirstYearPerformance
+ whenever this function would be called with an id, first it will find the CoursePerformance from the RandomDatabase
+ using the find function, then it gets the first scoreBoard by using the headOption function and then it must give us
+ back the Address if exist. Ideally you should use map and flatMap for this.
 
->>[3] Grades criteria :<br/>
-    A+  >= 95%<br/>
-    A   >= 90%<br/>
-    B+  >= 85%<br/>
-    B   >= 80%<br/>
-    C+  >= 70%<br/>
-    C   >= 60%<br/>
-    D+  >= 50%<br/>
-    D   >= 40%<br/>
-    F   <  40%<br/>
-    
->>[4] Follow the project structure strictly. Write logic for the created public methods. 
-You can create your own private methods.
+<b><i>Assignment 5:</i></b> Principal wants to know whats the result of CSE and he has a wild guess about the Course Performance
+id. Find the performance from RamDatabase and using constant pattern matching findout if it really is CSE. If not
+throw an exception.
+
+<b><i>Assignment 6:</i></b> Principal wants to know by guessing the id and the course name if it exist. And you should
+help him by using Variable Pattern for this as well as handle the case if no course matched with a wildcard pattern.
+
+<b><i>Assignment 7:</i></b> Principal gives different expressions when he gets to discuss about different topics. His
+expression like below.
+1. When its about Student he says "Shut up <firstName>". Use constructor pattern, and return the expression as String
+2. When its about Scoreboard he says "Hmmm .... <percentage>". Use constructor pattern, and return the expression as String
+3. When its about Subject he says "aha <subject name>". Use constructor pattern, and return the expression as String
+4. When its about anything else he says "!!! ???". Use constructor pattern, and return the expression as String
+
+<b><i>Assignment 8:</i></b> Principal checks scoreboard. It must return something like List["Nitin Java 90",
+"Kunal Scala 99"], use pattern matching in "for expression".
+
+<b><i>Assignment 9:</i></b> Re do the principal expressions with partial function.
