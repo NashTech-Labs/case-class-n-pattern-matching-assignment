@@ -9,8 +9,6 @@ trait Scorecard {
   val percentage: Float
   val grade: String
 
-  def getSubjectsWithMaxMarks: List[Subject] = ???
-  def getSubjectsWithMinMarks: List[Subject]  = ???
   def getAverageOfMarks: Float = ???
 
 }

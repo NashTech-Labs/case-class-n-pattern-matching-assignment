@@ -52,27 +52,27 @@ class ScorecardProcessorSpec extends ScorecardProcessor with AsyncWordSpecLike w
     val scoreCardListWithZeroFailure: List[Scorecard] = List(scorecardGirish)
 
     "get third failed student as None if fail count is less than 3" in {
-      val result: Option[Student] = getThirdFailedStudent(scorecardListWithTwoFailures)
+      val result: Option[(String, Int)] = getThirdFailedStudent(scorecardListWithTwoFailures)
       assert(result == None)
     }
 
     "get third failed student as Some(....) if fail count is >= 3" in {
-      val result: Option[Student] = getThirdFailedStudent(scorecardListWithThreeFailures)
-      assert(result == Some(student2))
+      val result: Option[(String, Int)] = getThirdFailedStudent(scorecardListWithThreeFailures)
+      assert(result == Some((student2.name, student2.rollNumber)))
     }
 
     "get the failed student with highest total" in {
-      val result: Option[Student] = getFailedStudentWithHeighestTotal(scorecardListWithThreeFailures)
-      assert(result == Some(student1))
+      val result: Option[(String, Int)] = getFailedStudentWithHeighestTotal(scorecardListWithThreeFailures)
+      assert(result == Some((student1.name, student1.rollNumber)))
     }
 
     "get Some passed student with Lowest Marks" in {
-      val result: Option[Student] = getPassStudentWithLowestMarks(scoreCardListWithZeroFailure)
-      assert(result == Some(student4))
+      val result = getPassStudentWithLowestMarks(scoreCardListWithZeroFailure)
+      assert(result == Some((student4.name, student4.rollNumber)))
     }
 
     "get None passed student with lowest marks when no student is passed" in {
-      val result : Option[Student] = getPassStudentWithLowestMarks(scorecardListWithThreeFailures)
+      val result = getPassStudentWithLowestMarks(scorecardListWithThreeFailures)
       assert(result == None)
     }
 
@@ -81,19 +81,21 @@ class ScorecardProcessorSpec extends ScorecardProcessor with AsyncWordSpecLike w
       assert(result == List("ba-305", "cg-801", "ca-804"))
     }
 
-    "get subject with maximum marks" in {
+    "get sutudent with maximum marks" in {
       val result = getTopperStudent(scorecardListWithThreeFailures ::: scoreCardListWithZeroFailure)
-      assert(result == Some(student4))
+      assert(result == Some((student4.name, student4.rollNumber)))
     }
 
     "get top three students" in {
       val result = getTopThreeStudents(scorecardListWithThreeFailures ::: scoreCardListWithZeroFailure)
-      assert(result == List(student1, student4, student2))
+      assert(result == List(Some((student1.name, student1.rollNumber)), Some((student4.name, student4.rollNumber)),
+        Some((student2.name, student2.rollNumber))))
     }
 
     "get failed students" in {
       val result = getFailedStudents(scorecardListWithThreeFailures ::: scoreCardListWithZeroFailure)
-      assert(result == List(student1, student2, student3))
+      assert(result == List((student1.name, student1.rollNumber), (student2.name, student2.rollNumber),
+        (student3.name, student3.rollNumber)))
     }
 
     "get pass student count" in {
@@ -107,8 +109,8 @@ class ScorecardProcessorSpec extends ScorecardProcessor with AsyncWordSpecLike w
     }
 
     "get student with grade B+" in {
-      val result = getStudentsWithGrade("B+", scorecardListWithThreeFailures ::: scoreCardListWithZeroFailure)
-      assert(result == student4)
+      val result: List[(String, Int)] = getStudentsWithGrade("B+", scorecardListWithThreeFailures ::: scoreCardListWithZeroFailure)
+      assert(result == List((student4.name, student4.rollNumber)))
     }
 
     "get student with grade B+" in {
@@ -117,13 +119,13 @@ class ScorecardProcessorSpec extends ScorecardProcessor with AsyncWordSpecLike w
     }
 
     "get students with percentage more than" in {
-      val result = getStudentsWithPercentageMoreThan(80, scorecardListWithThreeFailures ::: scoreCardListWithZeroFailure)
-      assert(result == List(student4))
+      val result: List[(String, Int)] = getStudentsWithPercentageMoreThan(80, scorecardListWithThreeFailures ::: scoreCardListWithZeroFailure)
+      assert(result == List((student4.name, student4.rollNumber)))
     }
 
     "get students with percentage less than" in {
-      val result = getStudentsWithPercentageMoreThan(80, scorecardListWithThreeFailures ::: scoreCardListWithZeroFailure)
-      assert(result == List(student1, student2, student3))
+      val result: List[(String, Int)] = getStudentsWithPercentageLessThan(80, scorecardListWithThreeFailures ::: scoreCardListWithZeroFailure)
+      assert(result == List((student4.name, student4.rollNumber), (student4.name, student4.rollNumber), (student4.name, student4.rollNumber)))
     }
 
     "get students count with percentage more than" in {
@@ -138,14 +140,13 @@ class ScorecardProcessorSpec extends ScorecardProcessor with AsyncWordSpecLike w
 
     "get student with highest marks in the subject" in {
       val result = getStudentsWithHighestMarksInCourse("Computer Organization", scorecardListWithThreeFailures ::: scoreCardListWithZeroFailure)
-      assert(result == List(student1))
+      assert(result == List((student1.name, student1.rollNumber)))
     }
 
     "get student with lowest marks in the subject" in {
       val result = getStudentsWithLowestMarksInCourse("Computer Organization", scorecardListWithThreeFailures ::: scoreCardListWithZeroFailure)
-      assert(result == List(student2))
+      assert(result == List((student2.name, student2.rollNumber)))
     }
 
   }
-
 }
